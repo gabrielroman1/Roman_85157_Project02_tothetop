@@ -1,116 +1,103 @@
 #Timer and Score objects
 from graphics import *
-def Obstacle_Control(Screen,Ball,Wall): 
-    S=50
-    Scob=0
-    Tap=0
-    TrS=10000000000
-    Score=0
-    GO=0
-    Ch=0
-    Lst_Plc=Point(0,0)
-    Balling=Circle(Point(100,100),15)
-    Wall[0].draw(Screen)
-    Wall[1].move(0,75)
-    Wall[1].draw(Screen)
-    Wall[2].move(0,150)
-    Wall[2].draw(Screen)
-    Wall2=[]
-    Wall2.append(Wall[0].clone())
-    Wall2.append(Wall[1].clone())
-    Wall2.append(Wall[2].clone())
-    Wall2[0].move(0,350)
-    Wall2[0].draw(Screen)
-    Wall2[1].move(0,175)
-    Wall2[1].draw(Screen)
-    Wall2[2].move(0,300)
-    Wall2[2].draw(Screen)
-    Ball.draw(Screen)
-    while GO == 0:
+
+class Obstacle_Control:
+    def __init__(self):
+      self.S=50
+      self.Scob=0
+      self.Tap=0
+      self.TrS=10000000000
+      self.Score=0
+      self.GO=0
+      self.Ch=0
+      self.Lst_Plc=Point(0,0)
+      self.Balling=Circle(Point(100,100),15)
+
+    def Ball_Movement(self,GOB):
+       
         
-      Center=Screen.checkMouse()
+         Center=GOB.Screen.checkMouse()
       
       
-      if Center != Ball.getCenter() and Ch == 0 and Center != None:
-         TrS=100000
-         Ball.undraw()
-         Balling=Circle(Center,10)
-         Lst_Plc=Center
-         Balling.setFill("red")
-         Balling.setOutline("red")
-         Balling.draw(Screen)
-         Ch=1
-         Score=Score+5  #Score Here!!!!!
-         Scob=Scob+25
-      elif Center != Balling.getCenter() and Center != None and Ch == 1:
-         Balling.undraw()
-         Balling=Circle(Center,10)
-         Balling.setFill("red")
-         Balling.setOutline("red")
-         Balling.draw(Screen)
-         Score=Score+5  #Score Here!!!!!
-         Scob=Scob+25
-      else:
-        if Ch == 1:
-          Balling.move(0,0)
-          Scob=Scob
-          Score=Score
-        else:
-          Ch=0
-          Scob=Scob
-          Score=Score
-          
-      if TrS <= 0:
-        TrS=100000
-        if (Wall[0].getP2()).getY()< 0:
-          Wall[0].move(0, 500-(Wall[0].getP2()).getY()) 
-        else:
-          Wall[0].move(0,-3)
-          Balling.move(0,-3)
-        if (Wall[1].getP2()).getY()< 0:
-          Wall[1].move(0, 500-(Wall[1].getP2()).getY())  
-        else:
-          Wall[1].move(0,-3)
-        if (Wall[2].getP2()).getY()< 0:
-          Wall[2].move(0, 500-(Wall[2].getP2()).getY())
-        else:
-          Wall[2].move(0,-3)
-        if (Wall2[0].getP2()).getY()< 0:
-          Wall2[0].move(0, 500-(Wall2[0].getP2()).getY())  
-        else:
-          Wall2[0].move(0,-3)
-          
-        if (Wall2[1].getP2()).getY()< 0:
-          Wall2[1].move(0, 500-(Wall2[1].getP2()).getY())  
-        else:
-          Wall2[1].move(0,-3)
-          
-        if (Wall2[2].getP2()).getY()< 0:
-          Wall2[2].move(0, 500-(Wall2[2].getP2()).getY())
-        else:
-          Wall2[2].move(0,-3)
-          
-      else:
-          
-         if Scob == 50:
-             Scob=0
-             S=S+50
-             TrS=TrS-S
+         if Center != GOB.Ball.getCenter() and self.Ch == 0 and Center != None:
+           self.TrS=100000
+           GOB.Ball.undraw()
+           self.Balling=Circle(Center,10)
+           self.Lst_Plc=Center
+           self.Balling.setFill("red")
+           self.Balling.setOutline("red")
+           self.Balling.draw(GOB.Screen)
+           self.Ch=1
+           self.Score=self.Score+5  #Score Here!!!!!
+           self.Scob=self.Scob+25
+         elif Center != self.Balling.getCenter() and Center != None and self.Ch == 1:
+           self.Balling.undraw()
+           self.Balling=Circle(Center,10)
+           self.Balling.setFill("red")
+           self.Balling.setOutline("red")
+           self.Balling.draw(GOB.Screen)
+           self.Score=self.Score+5  #Score Here!!!!!
+           self.Scob=self.Scob+25
          else:
-            TrS=TrS-S
-      
-          
-         
-      if (Balling.getCenter()).getY()<=0:
-         GO=1
-      else:
-         GO=0
+          if self.Ch == 1:
+            self.Balling.move(0,0)
+            self.Scob=self.Scob
+            self.Score=self.Score
+          else:
+            self.Ch=0
+            self.Scob=self.Scob
+            self.Score=self.Score
             
-    
-    Final_Score=int(Score)
-    Name=input("Enter name or nickname: ")
+    def Game_Time(self,GOB):   
+       if self.TrS <= 0:
+        self.TrS=100000
+        if (GOB.Wall[0].getP2()).getY()< 0:
+          GOB.Wall[0].move(0, 500-(GOB.Wall[0].getP2()).getY()) 
+        else:
+          GOB.Wall[0].move(0,-3)
+          self.Balling.move(0,-3)
+        if (GOB.Wall[1].getP2()).getY()< 0:
+          GOB.Wall[1].move(0, 500-(GOB.Wall[1].getP2()).getY())  
+        else:
+          GOB.Wall[1].move(0,-3)
+        if (GOB.Wall[2].getP2()).getY()< 0:
+          GOB.Wall[2].move(0, 500-(GOB.Wall[2].getP2()).getY())
+        else:
+          GOB.Wall[2].move(0,-3)
+        if (GOB.Wall2[0].getP2()).getY()< 0:
+          GOB.Wall2[0].move(0, 500-(GOB.Wall2[0].getP2()).getY())  
+        else:
+          GOB.Wall2[0].move(0,-3)
+          
+        if (GOB.Wall2[1].getP2()).getY()< 0:
+          GOB.Wall2[1].move(0, 500-(GOB.Wall2[1].getP2()).getY())  
+        else:
+          GOB.Wall2[1].move(0,-3)
+          
+        if (GOB.Wall2[2].getP2()).getY()< 0:
+          GOB.Wall2[2].move(0, 500-(GOB.Wall2[2].getP2()).getY())
+        else:
+          GOB.Wall2[2].move(0,-3)    
+       else:  
+         if self.Scob == 50:
+             self.Scob=0
+             self.S=self.S+50
+             self.TrS=self.TrS-self.S
+         else:
+            self.TrS=self.TrS-self.S
+      
+    def Over(self,GOB):
+         
+         
+      if (self.Balling.getCenter()).getY()<=0:
+        self.GO=1,
+        Final_Score=int(self.Score)
+        Name=input("Enter name or nickname: ")
+        return Final_Score,Name
+      else:
+        self.GO=0
+        return 0,"None"
      
-    return Final_Score,Name
 
 if __name__ =="__Obstacle_Control__":
 

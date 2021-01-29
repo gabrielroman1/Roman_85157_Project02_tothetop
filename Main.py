@@ -8,7 +8,7 @@ def main():
     a=0
     b=0
     while Power == "On":
-      Screen,Ball,Wall=Game_Object()
+      GOB=Game_Object()
       while b==0:
         print("REACHING THE TOP (THE GAME)")
         print("\nHi, Welcome to Reaching the Top")
@@ -24,19 +24,28 @@ def main():
            print("Please enter a number not a word.")
          
         if Input == 1:
-           FSC,Name=Obstacle_Control(Screen,Ball,Wall)
+            
+           Game=Obstacle_Control()
+           GOB.setWalls()
+           while Game.GO == 0:
+         
+              Game.Ball_Movement(GOB)
+              Game.Game_Time(GOB)
+              Name,FSC=Game.Over(GOB)
+              
            print("\n\n\nName: ",Name,"\nFinal Score: ",FSC,"\n\n",)
            PowerD=input("Do you want to exit game: ")
+           
            if PowerD == "Yes" or PowerD=="y" or PowerD == "Y":
              print("Good bye")
-             Screen.close()
+             GOB.Screen.close()
              Power ="Off"
              b=1
            else:
             Power="On"
             b=0
             a=0
-            Screen.close()
+            GOB.Screen.close()
         elif Input == 2:
           File=open("README.md","r")
           print(File.read())
