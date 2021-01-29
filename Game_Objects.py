@@ -58,7 +58,7 @@ class Game_Object:
     self.Wall2[2].move(0,300)
     self.Wall2[2].draw(self.Screen)
     self.Ball.draw(self.Screen)
-  
+  #Work with the object conditions, work with the notes in every method. 
 if __name__=='__Game_Object__':
 
   Game_Object()
