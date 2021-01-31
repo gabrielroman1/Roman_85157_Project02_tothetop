@@ -2,7 +2,15 @@
 from graphics import *
 
 class Obstacle_Control:
+    """ This class containts all the control algorithm
+        the constructor to set all the parameters of control of the game,
+        the update of the game and time, the score and the conditions. Finally,
+        the restrictions and the reason for game over. 
+    """
     def __init__(self):
+     """ Here we have the parameters set for the game, control variables,score
+         and time.
+     """
       self.S=50
       self.Scob=0
       self.Tap=0
@@ -16,7 +24,11 @@ class Obstacle_Control:
       self.Next=2
 
     def Ball_Movement(self,GOB):
-       
+         """ This method is for controlling the ball on moving where it needs to
+            from starting the game to moving through the game. Also, yo can see
+            that this function is the one that gives the score. Other methods mentioned
+            here, are describe in their respective places.
+         """
         
          Center=GOB.Screen.checkMouse()
           
@@ -61,7 +73,10 @@ class Obstacle_Control:
 
             
     def Clicked(self,Center,GOB):
-        
+        """ This method is for restraining the selection of the ball where it should be
+            if you select wrong it wont move the ball. If you select of the floor, it wont move the ball.
+            if you select another latter that isnt the correct one, then the ball wont move.
+        """
         if (GOB.Wall[0].getP1().getX()<= Center.getX() and GOB.Wall[0].getP2().getX()>= Center.getX())and(GOB.Wall[0].getP1().getY()< Center.getY() and GOB.Wall[0].getP2().getY()+15 >= Center.getY())and self.Next==1:
             self.Wallnum=11
             self.Next=2
@@ -98,7 +113,9 @@ class Obstacle_Control:
 
         
         
-    def Centering(self,Center,GOB):    
+    def Centering(self,Center,GOB):
+        """This function centers the correct selection you made on the corresponding floor.
+        """
          if self.Wallnum==11:
             RecCenter=GOB.Wall[0].getCenter()
             Center=Point(RecCenter.getX(),(RecCenter.getY()+10))
@@ -135,7 +152,9 @@ class Obstacle_Control:
         
         
             
-    def Game_Time(self,GOB):   
+    def Game_Time(self,GOB):
+        """ This method controls the time, the score, game dificulty and the walls movement.
+        """
        if self.TrS <= 0:
         self.TrS=100000
         if (GOB.Wall[0].getP2()).getY()< 0:
@@ -174,7 +193,9 @@ class Obstacle_Control:
             self.TrS=self.TrS-self.S
       
     def Over(self,GOB):
-         
+       """ This function gives the reason for game over, when it reaches the ground, then is game over
+           It will return the final score and ask for your name to print it all together. 
+       """
          
       if (self.Balling.getCenter()).getY()<=0:
         self.GO=1,

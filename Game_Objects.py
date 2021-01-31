@@ -4,13 +4,18 @@
 from graphics import *
 
 class Game_Object:
-
+  """ This class contain all the objects needed for the game to work.
+      it contains the contructor, the get methods to have the intance variables
+      of the object. Finally, the set in which we set the screen and other atributes
+      of the game as well.
+  """
+  
   def __init__(self):
     
       """ Here are all the objects made for the use of the game:
-      - the jumping ball
+      - the Ball
       - the Walls.
-      - Maybe others will come
+      - the Windows for graphic interface. 
       """
       #Screen
       self.Screen = GraphWin("Reaching the Top", 500, 500)
@@ -42,12 +47,16 @@ class Game_Object:
 
     
   def getScreen(self):
+    """This method return only the screen intance variable"""
      return self.Screen
+    """This method return only the Ball intance variable"""
   def getBall(self):
      return self.Ball
   def getWalls(self):
+    """This method return only the walls intance variable"""
      return self.Wall,self.wall2
   def setWalls_and_Ball(self):
+    """This method sets the walls and the ball starting point on the game"""
     self.Wall[0].draw(self.Screen)#1 first left
     self.Wall[1].move(0,65)
     self.Wall[1].draw(self.Screen)#2 first middle
