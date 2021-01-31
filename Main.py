@@ -26,7 +26,7 @@ def main():
         if Input == 1:
             
            Game=Obstacle_Control()
-           GOB.setWalls()
+           GOB.setWalls_and_Ball()
            while Game.GO == 0:
          
               Game.Ball_Movement(GOB)

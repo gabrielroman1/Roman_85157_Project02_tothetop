@@ -12,41 +12,128 @@ class Obstacle_Control:
       self.Ch=0
       self.Lst_Plc=Point(0,0)
       self.Balling=Circle(Point(100,100),15)
+      self.Wallnum=11
+      self.Next=2
 
     def Ball_Movement(self,GOB):
        
         
          Center=GOB.Screen.checkMouse()
-      
+          
       
          if Center != GOB.Ball.getCenter() and self.Ch == 0 and Center != None:
-           self.TrS=100000
-           GOB.Ball.undraw()
-           self.Balling=Circle(Center,10)
-           self.Lst_Plc=Center
-           self.Balling.setFill("red")
-           self.Balling.setOutline("red")
-           self.Balling.draw(GOB.Screen)
-           self.Ch=1
-           self.Score=self.Score+5  #Score Here!!!!!
-           self.Scob=self.Scob+25
+           Condition=self.Clicked(Center,GOB)
+           print
+           if not(Condition):
+              self.TrS=100000
+              
+           else:
+             self.TrS=100000
+             GOB.Ball.undraw()
+             self.Balling=Circle(self.Centering(Center,GOB),10)
+             self.Lst_Plc=Center
+             self.Balling.setFill("red")
+             self.Balling.setOutline("red")
+             self.Balling.draw(GOB.Screen)
+             self.Ch=1
+             self.Score=self.Score+5  #Score Here!!!!!
+             self.Scob=self.Scob+25
          elif Center != self.Balling.getCenter() and Center != None and self.Ch == 1:
-           self.Balling.undraw()
-           self.Balling=Circle(Center,10)
-           self.Balling.setFill("red")
-           self.Balling.setOutline("red")
-           self.Balling.draw(GOB.Screen)
-           self.Score=self.Score+5  #Score Here!!!!!
-           self.Scob=self.Scob+25
+            Condition=self.Clicked(Center,GOB)
+            if not(Condition):
+              self.Scob=self.Scob
+              self.Score=self.Score
+            else:
+              self.Balling.undraw()
+              self.Balling=Circle(self.Centering(Center,GOB),10)
+              self.Balling.setFill("red")
+              self.Balling.setOutline("red")
+              self.Balling.draw(GOB.Screen)
+              self.Score=self.Score+5  #Score Here!!!!!
+              self.Scob=self.Scob+25
          else:
           if self.Ch == 1:
             self.Balling.move(0,0)
-            self.Scob=self.Scob
-            self.Score=self.Score
           else:
             self.Ch=0
-            self.Scob=self.Scob
-            self.Score=self.Score
+            self.TrS=100000
+
+
+            
+    def Clicked(self,Center,GOB):
+        
+        if (GOB.Wall[0].getP1().getX()<= Center.getX() and GOB.Wall[0].getP2().getX()>= Center.getX())and(GOB.Wall[0].getP1().getY()< Center.getY() and GOB.Wall[0].getP2().getY()+15 >= Center.getY())and self.Next==1:
+            self.Wallnum=11
+            self.Next=2
+            
+            return True
+        elif (GOB.Wall[1].getP1().getX()<= Center.getX() and GOB.Wall[1].getP2().getX()>= Center.getX())and(GOB.Wall[1].getP1().getY()< Center.getY() and GOB.Wall[1].getP2().getY()+15 >= Center.getY())and self.Next==2:
+            self.Wallnum=12
+            self.Next=3
+            
+            return True
+        elif (GOB.Wall[2].getP1().getX()<= Center.getX() and GOB.Wall[2].getP2().getX()>= Center.getX())and(GOB.Wall[2].getP1().getY()< Center.getY() and GOB.Wall[2].getP2().getY()+15 >= Center.getY())and self.Next==3:
+            self.Wallnum=13
+            self.Next=5
+            
+            return True
+        elif (GOB.Wall2[0].getP1().getX()<= Center.getX() and GOB.Wall2[0].getP2().getX()>= Center.getX())and(GOB.Wall2[0].getP1().getY()< Center.getY() and GOB.Wall2[0].getP2().getY()+15 >= Center.getY())and self.Next==4:
+            self.Wallnum=21
+            self.Next=6
+            
+            return True
+        elif (GOB.Wall2[1].getP1().getX()<= Center.getX() and GOB.Wall2[1].getP2().getX()>= Center.getX())and(GOB.Wall2[1].getP1().getY()< Center.getY() and GOB.Wall2[1].getP2().getY()+15 >= Center.getY())and self.Next==5:
+            self.Wallnum=22
+            self.Next=4
+            
+            return True
+        elif (GOB.Wall2[2].getP1().getX()<= Center.getX() and GOB.Wall2[2].getP2().getX()>= Center.getX())and(GOB.Wall2[2].getP1().getY()< Center.getY() and GOB.Wall2[2].getP2().getY()+15 >= Center.getY())and self.Next==6:
+            self.Wallnum=23
+            self.Next=1
+            
+            return True
+        else:
+            
+            return False
+
+        
+        
+    def Centering(self,Center,GOB):    
+         if self.Wallnum==11:
+            RecCenter=GOB.Wall[0].getCenter()
+            Center=Point(RecCenter.getX(),(RecCenter.getY()+10))
+            
+            return Center
+         elif self.Wallnum==12:
+            RecCenter=GOB.Wall[1].getCenter()
+            Center=Point(RecCenter.getX(),(RecCenter.getY()+10))
+            
+            return Center
+         elif self.Wallnum==13:
+            RecCenter=GOB.Wall[2].getCenter()
+            Center=Point(RecCenter.getX(),(RecCenter.getY()+10))
+            
+            return Center
+         elif self.Wallnum==21:
+            RecCenter=GOB.Wall2[0].getCenter()
+            Center=Point(RecCenter.getX(),(RecCenter.getY()+10))
+            
+            return Center
+         elif self.Wallnum==22:
+            RecCenter=GOB.Wall2[1].getCenter()
+            Center=Point(RecCenter.getX(),(RecCenter.getY()+10))
+            
+            return Center
+         elif self.Wallnum==23:
+            RecCenter=GOB.Wall2[2].getCenter()
+            Center=Point(RecCenter.getX(),(RecCenter.getY()+10))
+            
+            return Center
+         else:
+            
+            return Center
+        
+        
             
     def Game_Time(self,GOB):   
        if self.TrS <= 0:
@@ -101,5 +188,5 @@ class Obstacle_Control:
 
 if __name__ =="__Obstacle_Control__":
 
-  Obstacle_Control()
+  OC=Obstacle_Control()
 
