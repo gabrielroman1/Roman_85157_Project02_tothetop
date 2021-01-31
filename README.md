@@ -4,4 +4,4 @@ For this game, the user will have a ball(circle) that the user will select the l
 
 In terms of coding: 
 
-  We used almost every possible technique available to design this game. Classes,loops, conditions, functions, list, variables, strings etc. We design the program in a modular form. Also, used libraries like graphics for creating the GUI. I created my own code for refreshing the figures. Different fro project #1 here we corrected the prpoblems and add it clases now the Game is running as intented. 
+  We used almost every possible technique available to design this game. Classes,loops, conditions, functions, list, variables, strings etc. We design the program in a modular form. Also, used libraries like graphics for creating the GUI. I created my own code for refreshing the figures. Different from project #1 here we corrected the prpoblems and add it clases now the Game is running as intented. 
