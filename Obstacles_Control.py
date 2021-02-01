@@ -8,9 +8,9 @@ class Obstacle_Control:
         the restrictions and the reason for game over. 
     """
     def __init__(self):
-     """ Here we have the parameters set for the game, control variables,score
+      """ Here we have the parameters set for the game, control variables,score
          and time.
-     """
+      """
       self.S=50
       self.Scob=0
       self.Tap=0
@@ -114,8 +114,8 @@ class Obstacle_Control:
         
         
     def Centering(self,Center,GOB):
-        """This function centers the correct selection you made on the corresponding floor.
-        """
+         """This function centers the correct selection you made on the corresponding floor.
+         """
          if self.Wallnum==11:
             RecCenter=GOB.Wall[0].getCenter()
             Center=Point(RecCenter.getX(),(RecCenter.getY()+10))
@@ -153,8 +153,8 @@ class Obstacle_Control:
         
             
     def Game_Time(self,GOB):
-        """ This method controls the time, the score, game dificulty and the walls movement.
-        """
+       """ This method controls the time, the score, game dificulty and the walls movement.
+       """
        if self.TrS <= 0:
         self.TrS=100000
         if (GOB.Wall[0].getP2()).getY()< 0:
@@ -193,9 +193,9 @@ class Obstacle_Control:
             self.TrS=self.TrS-self.S
       
     def Over(self,GOB):
-       """ This function gives the reason for game over, when it reaches the ground, then is game over
+      """ This function gives the reason for game over, when it reaches the ground, then is game over
            It will return the final score and ask for your name to print it all together. 
-       """
+      """
          
       if (self.Balling.getCenter()).getY()<=0:
         self.GO=1,

@@ -8,7 +8,6 @@ def main():
     a=0
     b=0
     while Power == "On":
-      GOB=Game_Object()
       while b==0:
         print("REACHING THE TOP (THE GAME)")
         print("\nHi, Welcome to Reaching the Top")
@@ -24,7 +23,7 @@ def main():
            print("Please enter a number not a word.")
          
         if Input == 1:
-            
+           GOB=Game_Object() 
            Game=Obstacle_Control()
            GOB.setWalls_and_Ball()
            while Game.GO == 0:

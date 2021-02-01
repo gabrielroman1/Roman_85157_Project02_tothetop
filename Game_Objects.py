@@ -47,13 +47,13 @@ class Game_Object:
 
     
   def getScreen(self):
-    """This method return only the screen intance variable"""
+     """This method return only the screen intance variable"""
      return self.Screen
-    """This method return only the Ball intance variable"""
   def getBall(self):
+     """This method return only the Ball intance variable"""
      return self.Ball
   def getWalls(self):
-    """This method return only the walls intance variable"""
+     """This method return only the walls intance variable"""
      return self.Wall,self.wall2
   def setWalls_and_Ball(self):
     """This method sets the walls and the ball starting point on the game"""
