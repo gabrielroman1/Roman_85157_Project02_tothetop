@@ -35,7 +35,7 @@ def main():
            print("\n\n\nName: ",Name,"\nFinal Score: ",FSC,"\n\n",)
            PowerD=input("Do you want to exit game: ")
            
-           if PowerD == "Yes" or PowerD=="y" or PowerD == "Y":
+           if PowerD == "Yes" or PowerD=="yes" or PowerD == "Y" or PowerD == "y":
              print("Good bye")
              GOB.Screen.close()
              Power ="Off"
@@ -50,7 +50,7 @@ def main():
           print(File.read())
           File.close()
           PowerD=input("Do you want to exit game: ")
-          if PowerD == "Yes" or PowerD=="y" or PowerD == "Y":
+          if PowerD == "Yes" or PowerD=="yes" or PowerD == "Y" or PowerD == "y":
              print("Good bye")
              Power ="Off"
              b=1
